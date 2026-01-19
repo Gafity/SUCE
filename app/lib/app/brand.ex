@@ -5,7 +5,7 @@ defmodule App.Brand do
   schema "brands" do
     field :brand, :string
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime_usec)
   end
 
   @doc false
