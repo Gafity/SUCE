@@ -5,7 +5,7 @@ defmodule App.Repo.Migrations.CreateBrands do
     create table(:brands) do
       add :brand, :string
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
   end
 end

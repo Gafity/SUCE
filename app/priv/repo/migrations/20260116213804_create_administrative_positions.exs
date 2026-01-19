@@ -4,7 +4,7 @@ defmodule App.Repo.Migrations.CreateAdministrativePositions do
   def up do
     execute("CREATE TYPE position_enum AS ENUM ('adm', 'manager', 'employee', 'auditor')")
 
-    create table(:administrative_positions) do
+    create table(:users) do
       add :employee_code, :string, null: false
       add :name, :string, null: false
       add :position, :position_enum, null: false
@@ -13,12 +13,12 @@ defmodule App.Repo.Migrations.CreateAdministrativePositions do
       add :password, :string, null: false
 
       # Importante adicionar!
-      timestamps()
+      timestamps(type: :utc_datetime_usec)
     end
   end
 
   def down do
-    drop table(:administrative_positions)
+    drop table(:users)
     execute("DROP TYPE position_enum")
   end
 end
