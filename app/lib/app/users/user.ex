@@ -1,4 +1,4 @@
-defmodule App.AdministrativePosition do
+defmodule AppWeb.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -15,7 +15,7 @@ defmodule App.AdministrativePosition do
 
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:employee_code, :name, :positoin, :phone_number, :email, :password])
+    |> cast(attrs, [:employee_code, :name, :position, :phone_number, :email, :password])
     |> validate_required([:employee_code, :name, :position, :phone_number, :email, :password])
     |> validate_length(:phone_number, min: 11)
     |> validate_length(:phone_number, max: 11)
