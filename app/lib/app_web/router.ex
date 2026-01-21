@@ -20,6 +20,11 @@ defmodule AppWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/api", AppWeb do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", AppWeb do
   #   pipe_through :api
