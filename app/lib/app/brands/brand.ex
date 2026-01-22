@@ -1,4 +1,4 @@
-defmodule App.Brand do
+defmodule AppWeb.Brands.Brand do
   use Ecto.Schema
   import Ecto.Changeset
 
