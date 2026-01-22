@@ -14,4 +14,20 @@ defmodule AppWeb.ProductController do
       |> render(:show, product: product)
     end
   end
+
+  def update(conn, %{"id" => id, "product" => product_params}) do
+    product = Products.get_product!(id)
+
+    with {:ok, %Product{} = product} <- Products.update_product(product, product_params) do
+      render(conn, :show, product: product)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    product = Products.get_product!(id)
+
+    with {:ok, %Product{}} <- Products.delete_product(product) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
