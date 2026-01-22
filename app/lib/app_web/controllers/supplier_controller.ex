@@ -12,4 +12,20 @@ defmodule AppWeb.SupplierController do
       |> render(:show, supplier: supplier)
     end
   end
+
+  def update(conn, %{"id" => id, "supplier" => supplier_params}) do
+    supplier = Suppliers.get_supplier!(id)
+
+    with {:ok, %Supplier{} = supplier} <- Suppliers.update_supplier(supplier, supplier_params) do
+      render(conn, :show, supplier: supplier)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    supplier = Suppliers.get_supplier!(id)
+
+    with {:ok, %Supplier{}} <- Suppliers.delete_supplier(supplier) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
