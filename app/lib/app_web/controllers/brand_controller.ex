@@ -11,4 +11,20 @@ defmodule AppWeb.BrandController do
       |> render(:show, brand: brand)
     end
   end
+
+  def update(conn, %{"id" => id, "brand" => brand_params}) do
+    brand = Brands.get_brand!(id)
+
+    with {:ok, %Brand{} = brand} <- Brands.update_brand(brand, brand_params) do
+      render(conn, :show, brand: brand)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    brand = Brands.get_brand!(id)
+
+    with {:ok, %Brand{}} <- Brands.delete_brand(brand) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
