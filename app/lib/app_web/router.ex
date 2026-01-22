@@ -23,6 +23,9 @@ defmodule AppWeb.Router do
   scope "/api", AppWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
+    resources "/brands", BrandController, except: [:new, :edit]
+    resources "/products", ProductController, except: [:new, :edit]
+    resources "/suppliers", SupplierController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
